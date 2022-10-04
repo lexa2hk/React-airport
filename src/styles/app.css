@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 30px;
+    width: 100%;
+    min-height: 100vh;
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+[class^="box-"] {
+    background: #0575E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    height: 96vh;
+}
+
+.box-2 {
+    /*max-width: 500px;*/
+}
+
+.container {
+    display: grid;
+    gap: 10px;
+    margin-left: 10px;
+
+    grid-template-columns: 59% 39%;
+}
+
+.containerA {
+    display: grid;
+    gap: 10px;
+    width: 57vw;
+    grid-template-rows: 50% 50%;
+
+}
+
+.airport-scheme, .states {
+    display: grid;
+    place-items: center;
+    height: 43vh;
+    overflow: hidden;
+}
+
+.airport-scheme img{
+    border-radius: 5px;
+}
+
+.airport-image{
+    /*max-width: 100%;*/
+    /*object-fit: contain;*/
+
+    /*max-height: 500px;*/
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 405px;
+
+}
+
+.statePost {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #8b8b8b;
+    padding: 5px;
+    margin: 5px;
+    max-width: 99%;
+}
+
+.states {
+    display: block;
+}
+
+.states h3{
+    color: #C9D6FF;
+    font-family: Consolas, serif;
+    max-height: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
