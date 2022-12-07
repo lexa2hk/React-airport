@@ -4,39 +4,18 @@ import StateList from "./components/StateList";
 import MainButton from "./components/UI/button/MainButton";
 import axios from "axios";
 import MessageList from "./components/MessageList";
+import FlightList from "./components/FlightList";
 
 
 
 
 function App() {
-    const [states, setStates] = useState([
-
-    ]);
-
-
-
-    const promiseAPI = () => {
-        return axios.get('http://localhost:8080/message/getMessages')
-            .then((response)=>response.data)
-
-    }
-
-    const addNewState = () => {
-        promiseAPI()
-            .then(data =>{
-                for(let i = 0; i < data.length; i++){
-
-                    setStates([...states, data[i]]);
-                }
-            })
-        console.log(states);
-    }
 
     return (
         <div className="App-wrapper">
 
             <div className="header">
-                <p>SOME HEADER</p>
+                <p>Virtual Airport</p>
             </div>
 
             <div className="container">
@@ -45,18 +24,17 @@ function App() {
                         <div className="airport-scheme">
                             <img className="airport-image" src={require('./images/airport.jpg')} alt=""/>
                         </div>
-                        <StateList posts={states}/>
+                        <MessageList/>
                     </div>
 
                 </div>
                 <div className="box-2">
-                    table
+                    <FlightList/>
                 </div>
             </div>
 
-            <MessageList/>
 
-            <MainButton onClick={addNewState}>GET</MainButton>
+
         </div>
   );
 }

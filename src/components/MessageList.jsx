@@ -54,7 +54,6 @@ const MessageList = () => {
         return (
             <div>
                 Loading...
-
             </div>
 
         );
@@ -62,10 +61,10 @@ const MessageList = () => {
     else {
         return (
             <div className="states">
-                <h3>Команды судам</h3>
+                <h3>Message Log</h3>
                 <ul>
-                    {state.items.map(item => (
-                        <li>{item.id} {item.message}</li>
+                    {state.items.reverse().slice(0,12).map(item => (
+                        <li>{item.message}</li>
                     ))}
                 </ul>
             </div>
