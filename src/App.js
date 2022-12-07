@@ -3,35 +3,33 @@ import './styles/app.css'
 import StateList from "./components/StateList";
 import MainButton from "./components/UI/button/MainButton";
 import axios from "axios";
+import MessageList from "./components/MessageList";
 
 
 
 
 function App() {
     const [states, setStates] = useState([
-        {text: '123'},
-        {text: '1234'},
-        {text: '12345'},
-        {text: '123456'},
-        {text: '1234567'}
-    ])
+
+    ]);
 
 
 
     const promiseAPI = () => {
-        const promise = axios.get('https://jsonplaceholder.typicode.com/todos/1')
-        const dataPromise = promise.then((response)=>response.data)
-        return dataPromise
+        return axios.get('http://localhost:8080/message/getMessages')
+            .then((response)=>response.data)
+
     }
 
     const addNewState = () => {
         promiseAPI()
             .then(data =>{
-                // const result = JSON.parse(data)
-                console.log(data.title)
-                setStates([...states, {text: data.title}])
+                for(let i = 0; i < data.length; i++){
+
+                    setStates([...states, data[i]]);
+                }
             })
-        console.log(states)
+        console.log(states);
     }
 
     return (
@@ -55,6 +53,8 @@ function App() {
                     table
                 </div>
             </div>
+
+            <MessageList/>
 
             <MainButton onClick={addNewState}>GET</MainButton>
         </div>
