@@ -1,4 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
+
+const headers = {
+    'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjgyOTc1MTA5LCJleHAiOjE2ODMwMTExMDl9._XQ57FwbiATrYbG-UULZY_Aips6vQyyPHZmFIMLQ1Nc'
+}
 
 const FlightList = () => {
     let [state, setState] = useState([{
@@ -10,7 +14,7 @@ const FlightList = () => {
 
     useEffect(() => {
         setInterval(() => {
-            fetch("http://localhost:8080/aircraft/getAll")
+            fetch("http://localhost:8080/aircraft/getAll",{headers:headers})
                 .then(res => res.json())
                 .then(
                     (result) => {

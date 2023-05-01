@@ -17,11 +17,15 @@ const MessageList = () => {
     }
     ]);
 
+    const headers = {
+        'Authorization':'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjgyMTg2Mjg2LCJleHAiOjE2ODIyMjIyODZ9.PeO4z72bqFOt5qk8o86IwPuEx6Wo_HDpEB7jjfsD62o'
+    }
+
 
     useEffect(() => {
         setInterval(() => {
             console.log('componentDidMount');
-            fetch("http://localhost:8080/message/getMessages")
+            fetch("http://localhost:8080/message/getMessages",{headers:headers})
                 .then(res => res.json())
                 .then(
                     (result) => {

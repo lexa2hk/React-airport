@@ -5,8 +5,7 @@ import MainButton from "./components/UI/button/MainButton";
 import axios from "axios";
 import MessageList from "./components/MessageList";
 import FlightList from "./components/FlightList";
-
-
+import MainFrame from "./components/MainFrame";
 
 
 function App() {
@@ -15,26 +14,11 @@ function App() {
         <div className="App-wrapper">
 
             <div className="header">
-                <p>Virtual Airport</p>
+                <p>PlaneSale</p>
             </div>
 
-            <div className="container">
-                <div className="box-1">
-                    <div className="containerA">
-                        <div className="airport-scheme">
-                            <img className="airport-image" src={require('./images/airport.jpg')} alt=""/>
-                        </div>
-                        <MessageList/>
-                    </div>
-
-                </div>
-                <div className="box-2">
-                    <FlightList/>
-                </div>
-            </div>
-
-
-
+            <MainFrame/>
+            
         </div>
   );
 }
