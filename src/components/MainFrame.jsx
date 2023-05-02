@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import StatePost from "./StatePost";
 import mainButton from "./UI/button/MainButton";
-import MessageList from "./MessageList";
+import Reservation from "./Reservation";
 import FlightList from "./FlightList";
 import AuthForm from "./AuthForm";
 import Cookies from 'universal-cookie';
+import Cart from "./Cart";
 
 
 const MainFrame = () => {
@@ -16,26 +17,37 @@ const MainFrame = () => {
         error: null,
         isLoaded: false,
         isAuthenticated: false,
-        bearer: cookies.get('Bearer')
+        bearer: 'Bearer ' + cookies.get('Bearer')
     }
     ]);
 
     const handleBearer = (bearer) => {
+        // if(bearer.split(' ')[0] === 'Bearer'){
+        //     bearer = bearer.split(' ')[1];
+        // }
         setState({
             ...state,
             isAuthenticated: true,
-            bearer: bearer
+            bearer: 'Bearer '+bearer
         });
     }
 
-    console.log(cookies.get('Bearer'));
 
     // let [bearer, setBearer] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/ping",{headers: {
-            'Authorization':state.bearer
-            }})
+
+        var myHeaders = new Headers();
+        console.log('Bearer '+cookies.get('Bearer'));
+        myHeaders.append("Authorization", 'Bearer '+cookies.get('Bearer'));
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/api/v1/ping", requestOptions)
             .then((response => {
                 console.log(`Request status code: ${response.status}`);
                 setState({
@@ -56,7 +68,13 @@ const MainFrame = () => {
     },[]);
 
 
-
+    function handleLogoutButton() {
+        cookies.remove('Bearer');
+        setState({
+            ...state,
+            isAuthenticated: false
+        });
+    }
 
     if(state.error) {
         return <div>Error: {state.error.message}</div>;
@@ -76,18 +94,28 @@ const MainFrame = () => {
     }
     else {
         return (
-            <div className="container">
-                <div className="box-1">
-                    <div className="containerA">
-                        <div className="airport-scheme">
-                            <img className="airport-image" src={require('../images/airport.jpg')} alt=""/>
-                        </div>
-                        <MessageList/>
-                    </div>
+            <div>
+                <button onClick={handleLogoutButton}>logout</button>
+                <div className="container">
 
-                </div>
-                <div className="box-2">
-                    <FlightList/>
+                    <div className="box-1">
+                        <div className="containerA">
+                            <div className="airport-scheme">
+                                <img className="airport-image" src={require('../images/airport.jpg')} alt=""/>
+                            </div>
+
+
+                        </div>
+                        <Reservation/>
+                        <div>
+                            <p>Your cart</p>
+                            <Cart/>
+                        </div>
+
+                    </div>
+                    <div className="box-2">
+                        <FlightList bearer={state.bearer}/>
+                    </div>
                 </div>
             </div>
         );

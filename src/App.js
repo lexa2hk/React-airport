@@ -3,7 +3,7 @@ import './styles/app.css'
 import StateList from "./components/StateList";
 import MainButton from "./components/UI/button/MainButton";
 import axios from "axios";
-import MessageList from "./components/MessageList";
+import Reservation from "./components/Reservation";
 import FlightList from "./components/FlightList";
 import MainFrame from "./components/MainFrame";
 
